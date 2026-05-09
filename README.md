@@ -426,8 +426,6 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <h1 class="page-title">Manage Example Users</h1>
-
         <!-- Search Section -->
         <div class="search-section">
             <div class="search-container">
