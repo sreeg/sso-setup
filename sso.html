@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -96,9 +97,11 @@
             cursor: pointer;
             color: #4b5563;
         }
+
         #pega-content {
             max-width: 600px;
         }
+
         .user-info {
             display: flex;
             align-items: center;
@@ -388,6 +391,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header class="header">
@@ -412,7 +416,8 @@
             <div class="header-right">
                 <button class="notification-btn" aria-label="Notifications">
                     <svg class="w-5 h-5" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                        <path
+                            d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
                     </svg>
                 </button>
                 <div class="user-info">
@@ -429,9 +434,12 @@
         <div class="search-section">
             <div class="search-container">
                 <div class="search-input-wrapper">
-                    <input type="text" class="search-input" placeholder="Search all users in your org using Name or Email">
-                    <svg class="search-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    <input type="text" class="search-input"
+                        placeholder="Search all users in your org using Name or Email">
+                    <svg class="search-icon" width="20" height="20" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </div>
                 <div class="stats-container">
@@ -464,12 +472,14 @@
                 <div class="empty-state-content initial-content">
                     <div class="shield-icon-wrapper">
                         <svg class="shield-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                     </div>
                     <h2 class="empty-state-title">Get started with Federated SSO</h2>
                     <p class="empty-state-description">
-                        Federated authentication is not set up for your organization yet. Enable SSO to allow users to sign in using your organization's identity provider.
+                        Federated authentication is not set up for your organization yet. Enable SSO to allow users to
+                        sign in using your organization's identity provider.
                     </p>
                     <button class="enable-btn" id="enable-sso-btn">Enable Federated SSO</button>
                     <div>
@@ -477,8 +487,13 @@
                     </div>
                 </div>
                 <div id="pega-content">
-                    <script src='https://pm-demos.external.pegalabs.io/prweb/PRRestService/c11nsvc/v1/pega-embed.js'></script>
-                    <pega-embed id='theEmbed' action='createCase' caseTypeID='O9CZRQ-CitiServe-Work-FederatedAuthentication' themeID='CitiServe' customCSS='sso.css' casePage='assignment' assignmentHeader='false' appAlias='citi-serve' pegaServerUrl='https://pm-demos.external.pegalabs.io/prweb/' autoReauth='true' authService='pega' clientId='57400905492318809557' style='width:100%; height:600px;'>
+                    <script
+                        src='https://pm-demos.external.pegalabs.io/prweb/PRRestService/c11nsvc/v1/pega-embed.js'></script>
+                    <pega-embed id='theEmbed' action='createCase'
+                        caseTypeID='O9CZRQ-CitiServe-Work-FederatedAuthentication' themeID='CitiServe'
+                        customCSS='sso.css' casePage='assignment' assignmentHeader='false' appAlias='citi-serve'
+                        pegaServerUrl='https://pm-demos.external.pegalabs.io/prweb/' autoReauth='true'
+                        authService='pega' clientId='57400905492318809557' style='width:100%; height:600px;'>
                     </pega-embed>
                 </div>
             </div>
@@ -507,7 +522,8 @@
     <!-- Restart Button -->
     <button class="restart-btn">
         <svg class="restart-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
         </svg>
         <span>Restart</span>
     </button>
@@ -520,14 +536,14 @@
                 // Remove active class from all tabs and content
                 document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
+
                 // Add active class to clicked tab
                 tab.classList.add('active');
-                
+
                 // Show corresponding content
                 const tabId = tab.getAttribute('data-tab');
                 document.getElementById(tabId).classList.add('active');
-                
+
                 // If switching back to Federated SSO tab and pega content is shown, reset it
                 if (tabId === 'federated-sso') {
                     const pegaContent = document.getElementById('pega-content');
@@ -546,11 +562,12 @@
             enableSsoBtn.addEventListener('click', () => {
                 // Hide the initial content
                 document.querySelector('.initial-content').classList.add('hidden');
-                
+
                 // Show the pega content
                 document.getElementById('pega-content').classList.add('active');
             });
         }
     </script>
 </body>
+
 </html>
