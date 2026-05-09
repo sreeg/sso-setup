@@ -39,3 +39,5 @@ textarea {
 --textarea-height: 150px !important;
 border-color: #e1e2eb !important
 }
+div.pega-form-field > div {
+  justify-content: flext-start !important;
