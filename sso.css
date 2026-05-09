@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+    font-family: OpenSans, sans-serif;
+
+}
+
+form input {
+  height: 46px !important;
+  border-color: #e1e2eb !important
+}
+
+article {
+  background: #f6f5f8 !important;
+}
+.step-header {
+        font-size: 23px;
+    font-weight: 800;
+    text-decoration: inherit;
+    text-transform: none;
+    text-align: left;
+    line-height: 1.2;
+}
+
+.step-header, fieldset legend {
+  padding: 0 !important;
+  color: #00225b !important;
+}
+
+fieldset.pega-form-field > div:first-child span, fieldset label {
+    color: #8d8e99 !important
+}
+
+fieldset p {
+    color: #011d65 !important;
+}
+textarea {
+--textarea-height: 150px !important;
+border-color: #e1e2eb !important
+}
