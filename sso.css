@@ -40,4 +40,4 @@ textarea {
 border-color: #e1e2eb !important
 }
 div.pega-form-field > div {
-  justify-content: flext-start !important;
+  justify-content: 'flext-start' !important;
