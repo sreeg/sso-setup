@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSO Setup - MY PEGA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f9fafb;
+            color: #1f2937;
+        }
+
+        /* Header */
+        .header {
+            background-color: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 2rem;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icons {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .logo-icon {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        .logo-icon-1 {
+            background-color: #2563eb;
+        }
+
+        .logo-icon-2 {
+            background-color: #60a5fa;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            line-height: 1.2;
+        }
+
+        .nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: #4b5563;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #2563eb;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .notification-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            color: #4b5563;
+        }
+        #pega-content {
+            max-width: 600px;
+            background-color: #f6f5f8;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #d1d5db;
+        }
+
+        .user-name {
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 1.5rem 2rem;
+        }
+
+        .page-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Search Bar */
+        .search-section {
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            flex: 1;
+            max-width: 28rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.5rem 2.5rem 0.5rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+
+        .stats-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .invite-btn {
+            padding: 0.5rem 1rem;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .invite-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Tabs */
+        .tabs {
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 1.5rem;
+        }
+
+        .tabs-container {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .tab {
+            background: none;
+            border: none;
+            padding: 0.75rem 0.25rem;
+            font-size: 0.875rem;
+            color: #4b5563;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .tab:hover {
+            color: #1f2937;
+        }
+
+        .tab.active {
+            color: #14b8a6;
+            font-weight: 600;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #14b8a6;
+        }
+
+        /* Empty State */
+        .empty-state {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .empty-state-content {
+            max-width: 42rem;
+            width: 100%;
+        }
+
+        .empty-state-content:has(#pega-content.active) {
+            max-width: 60rem;
+        }
+
+        .shield-icon-wrapper {
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            background-color: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .shield-icon {
+            width: 64px;
+            height: 64px;
+            color: #4f46e5;
+        }
+
+        .empty-state-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state-description {
+            font-size: 1rem;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .enable-btn {
+            padding: 0.75rem 1.5rem;
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .enable-btn:hover {
+            background-color: #4338ca;
+        }
+
+        .learn-more-link {
+            color: #4f46e5;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        .learn-more-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Restart Button */
+        .restart-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: #1f2937;
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.2s;
+        }
+
+        .restart-btn:hover {
+            background-color: #374151;
+        }
+
+        .restart-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Hidden content for other tabs */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Pega Content */
+        #pega-content {
+            display: none !important;
+            width: 100%;
+            min-height: 600px;
+            margin: 0 auto;
+        }
+
+        #pega-content.active {
+            display: block !important;
+        }
+
+        #pega-content pega-embed {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .initial-content.hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo">
+                    <div class="logo-icons">
+                        <div class="logo-icon logo-icon-1"></div>
+                        <div class="logo-icon logo-icon-2"></div>
+                    </div>
+                    <div class="logo-text">MY PEGA</div>
+                </div>
+                <nav class="nav">
+                    <a href="#" class="nav-link">Organization</a>
+                    <a href="#" class="nav-link">Partners</a>
+                    <a href="#" class="nav-link">Collaboration</a>
+                    <a href="#" class="nav-link">Software</a>
+                    <a href="#" class="nav-link">Career Growth</a>
+                    <a href="#" class="nav-link">User Management</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <button class="notification-btn" aria-label="Notifications">
+                    <svg class="w-5 h-5" width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                    </svg>
+                </button>
+                <div class="user-info">
+                    <div class="user-avatar"></div>
+                    <span class="user-name">Hello Samantha</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1 class="page-title">Manage Example Users</h1>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-input" placeholder="Search all users in your org using Name or Email">
+                    <svg class="search-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                <div class="stats-container">
+                    <div class="stat">
+                        <div class="stat-value">6,323</div>
+                        <div class="stat-label">Total Users</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">0</div>
+                        <div class="stat-label">Invites Pending</div>
+                    </div>
+                    <button class="invite-btn">Invite Users</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tabs-container">
+                <button class="tab" data-tab="user-roles">User Roles</button>
+                <button class="tab" data-tab="access-teams">Access Teams</button>
+                <button class="tab active" data-tab="federated-sso">Federated SSO</button>
+                <button class="tab" data-tab="history">History</button>
+            </div>
+        </div>
+
+        <!-- Tab Content: Federated SSO -->
+        <div class="tab-content active" id="federated-sso">
+            <div class="empty-state">
+                <div class="empty-state-content initial-content">
+                    <div class="shield-icon-wrapper">
+                        <svg class="shield-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h2 class="empty-state-title">Get started with Federated SSO</h2>
+                    <p class="empty-state-description">
+                        Federated authentication is not set up for your organization yet. Enable SSO to allow users to sign in using your organization's identity provider.
+                    </p>
+                    <button class="enable-btn" id="enable-sso-btn">Enable Federated SSO</button>
+                    <div>
+                        <a href="#" class="learn-more-link">Learn more here</a>
+                    </div>
+                </div>
+                <div id="pega-content">
+                    <script src='https://pm-demos.external.pegalabs.io/prweb/PRRestService/c11nsvc/v1/pega-embed.js'></script>
+                    <pega-embed id='theEmbed' action='createCase' caseTypeID='O9CZRQ-CitiServe-Work-FederatedAuthentication' themeID='CitiServe' customCSS='http://10.225.155.33:4000/sso.css' casePage='assignment' assignmentHeader='false' appAlias='citi-serve' pegaServerUrl='https://pm-demos.external.pegalabs.io/prweb/' autoReauth='true' authService='pega' clientId='57400905492318809557' style='width:100%; height:600px;'>
+                    </pega-embed>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Other Tabs (Placeholder) -->
+        <div class="tab-content" id="user-roles">
+            <div class="empty-state">
+                <p style="color: #6b7280;">Content for User Roles tab</p>
+            </div>
+        </div>
+
+        <div class="tab-content" id="access-teams">
+            <div class="empty-state">
+                <p style="color: #6b7280;">Content for Access Teams tab</p>
+            </div>
+        </div>
+
+        <div class="tab-content" id="history">
+            <div class="empty-state">
+                <p style="color: #6b7280;">Content for History tab</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Restart Button -->
+    <button class="restart-btn">
+        <svg class="restart-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+        <span>Restart</span>
+    </button>
+
+    <!-- Tab Switching Script -->
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+                
+                // If switching back to Federated SSO tab and pega content is shown, reset it
+                if (tabId === 'federated-sso') {
+                    const pegaContent = document.getElementById('pega-content');
+                    const initialContent = document.querySelector('.initial-content');
+                    if (pegaContent.classList.contains('active')) {
+                        pegaContent.classList.remove('active');
+                        initialContent.classList.remove('hidden');
+                    }
+                }
+            });
+        });
+
+        // Enable SSO button functionality
+        const enableSsoBtn = document.getElementById('enable-sso-btn');
+        if (enableSsoBtn) {
+            enableSsoBtn.addEventListener('click', () => {
+                // Hide the initial content
+                document.querySelector('.initial-content').classList.add('hidden');
+                
+                // Show the pega content
+                document.getElementById('pega-content').classList.add('active');
+            });
+        }
+    </script>
+</body>
+</html>
